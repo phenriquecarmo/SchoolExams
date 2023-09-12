@@ -1,0 +1,34 @@
+micronaut:
+  server:
+    port: 8082
+    error:
+      include-message: always
+  application:
+    name: ExamsAPI
+
+datasources:
+  default:
+    url: jdbc:mysql://localhost:3306/ktSchoolStudents
+    username: henriquecarmo
+    password: MySQLTest!
+    driverClassName: com.mysql.cj.jdbc.Driver
+    dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+
+jpa:
+  default:
+    entity-scan:
+      packages: 'com.schoolstudents'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: create-drop
+        show_sql: true
+        format_sql: true
+
+io:
+  micronaut:
+    context:
+      condition: trace
+
+
