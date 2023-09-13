@@ -43,13 +43,16 @@ class UserController(
     fun updateTests(
         @PathVariable("studentId") studentId: Long,
         @Body studentUser: StudentUser
-    ) {
+    ): HttpResponse<String> {
         userService.updateUser(studentId, studentUser.studentName, studentUser.studentDateOfBirth, studentUser.studentEmail)
+
+        return HttpResponse.created("Student information was updated")
     }
 
-    @Delete("/{questionId}")
-    fun deleteUser(@PathVariable("questionId") examId: Long) {
-        userService.deleteUser(examId)
+    @Delete("/{userId}")
+    fun deleteUser(@PathVariable("userId") userId: Long): HttpResponse<String> {
+        userService.deleteUser(userId)
 
+        return HttpResponse.ok("User of ID " + userId + "was deleted")
     }
 }

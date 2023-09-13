@@ -44,13 +44,16 @@ class ExamController(
 
 
     @Put
-    fun updateExam(@Body exam: Exam) {
+    fun updateExam(@Body exam: Exam): HttpResponse<String> {
         examService.updateExam(exam)
+
+        return HttpResponse.created("Exam's fields were updated!")
     }
 
     @Delete("/{questionId}")
-    fun deleteExam(@PathVariable("questionId") examId: Long) {
+    fun deleteExam(@PathVariable("questionId") examId: Long): HttpResponse<String> {
         examService.deleteExam(examId)
+        return HttpResponse.ok("Exam of ID" + examId + "was deleted")
 
     }
 }
