@@ -1,5 +1,8 @@
 package com.schoolexams.controllers
 
+import com.schoolexams.dtos.ExamCreateDTO
+import com.schoolexams.dtos.ExamUpdateDTO
+import com.schoolexams.dtos.ExamViewDTO
 import com.schoolexams.dtos.UserAndExamIDs
 import com.schoolexams.models.Exam
 import com.schoolexams.services.ExamService
@@ -16,8 +19,13 @@ class ExamController(
     private val userExistenceValidation: UserExistenceValidation
 ) {
     @Get
-    fun listExams(): List<Exam> {
+    fun listExams(): List<ExamViewDTO> {
         return examService.listExams()
+    }
+
+    @Get("/{examId}")
+    fun listExamById(@PathVariable("examId") examId: Long): ExamViewDTO {
+        return examService.getExamById(examId)
     }
 
     @Get("/examsOfUserId/{studentId}")
@@ -26,9 +34,9 @@ class ExamController(
     }
 
     @Post
-    fun registerExam(@Body exam: Exam): HttpResponse<String> {
+    fun registerExam(@Body newExam: ExamCreateDTO): HttpResponse<String> {
 
-        examService.registerExam(exam)
+        examService.registerExam(newExam)
         return HttpResponse.created("Exam registered successfully")
     }
 
@@ -44,16 +52,15 @@ class ExamController(
 
 
     @Put
-    fun updateExam(@Body exam: Exam): HttpResponse<String> {
-        examService.updateExam(exam)
+    fun updateExam(@Body updatedExam: ExamUpdateDTO): HttpResponse<String> {
+        examService.updateExam(updatedExam)
 
         return HttpResponse.created("Exam's fields were updated!")
     }
 
     @Delete("/{questionId}")
     fun deleteExam(@PathVariable("questionId") examId: Long): HttpResponse<String> {
-        examService.deleteExam(examId)
-        return HttpResponse.ok("Exam of ID" + examId + "was deleted")
+        return examService.deleteExam(examId)
 
     }
 }

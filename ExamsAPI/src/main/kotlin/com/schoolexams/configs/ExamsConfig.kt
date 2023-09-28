@@ -3,17 +3,20 @@ package com.schoolexams.configs
 import com.schoolexams.models.Exam
 import com.schoolexams.models.ExamLevel
 import com.schoolexams.repositories.ExamsRepository
-import io.micronaut.context.annotation.Bean
-import io.micronaut.context.annotation.Factory
 import io.micronaut.runtime.Micronaut
+import jakarta.annotation.PostConstruct
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 
 
-@Factory
-class ExamsConfig(private val examsRepository: ExamsRepository) {
+@Singleton
+class ExamsConfig(
+    @Inject
+    private val examsRepository: ExamsRepository
+) {
 
-    @Bean
-    fun commandLineRunner(): Runnable {
-        return Runnable {
+    @PostConstruct
+    fun initializeData() {
             println("Starting data initialization...")
             val prompt1 = Exam(
                 1L,
@@ -77,9 +80,14 @@ class ExamsConfig(private val examsRepository: ExamsRepository) {
 
             examsRepository.saveAll(listOf(prompt1, prompt2, prompt3, prompt4, prompt5, prompt6))
         }
-    }
 }
 
+fun main(args: Array<String>) {
+    Micronaut.build()
+        .packages("com.schoolexams")
+        .mainClass(ExamsConfig::class.java)
+        .start()
+}
 
 
 

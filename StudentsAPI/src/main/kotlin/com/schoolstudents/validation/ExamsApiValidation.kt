@@ -11,4 +11,5 @@ interface ExamsApiValidation {
 
     @Get("/examsOfUserId/{studentId}") // GET Request
     fun getUserExams(@PathVariable("studentId") userId: Long): HttpResponse<List<UserExams?>?>
+
 }
