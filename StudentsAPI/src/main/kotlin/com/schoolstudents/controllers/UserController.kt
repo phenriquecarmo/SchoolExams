@@ -1,6 +1,9 @@
 package com.schoolstudents.controllers
 
+import com.schoolstudents.dtos.UserCreateDTO
 import com.schoolstudents.dtos.UserExams
+import com.schoolstudents.dtos.UserUpdateDTO
+import com.schoolstudents.dtos.UserViewDTO
 import com.schoolstudents.models.StudentUser
 import com.schoolstudents.services.UserService
 import com.schoolstudents.validation.ExamsApiValidation
@@ -17,12 +20,12 @@ class UserController(
     private val examsAPIValidation: ExamsApiValidation
 ) {
     @Get
-    fun listUsers(): List<StudentUser> {
+    fun listUsers(): List<UserViewDTO> {
         return userService.listUsers()
     }
 
     @Get("/{studentId}")
-    fun listUserById(@PathVariable("studentId") studentId: Long): StudentUser {
+    fun listUserById(@PathVariable("studentId") studentId: Long): UserViewDTO {
         return userService.listUserById(studentId)
     }
 
@@ -33,7 +36,7 @@ class UserController(
 
 
     @Post
-    fun registerUser(@Body studentUser: StudentUser): HttpResponse<String> {
+    fun registerUser(@Body studentUser: UserCreateDTO): HttpResponse<String> {
         userService.registerUser(studentUser)
 
         return HttpResponse.created("Student registered successfully")
@@ -42,17 +45,15 @@ class UserController(
     @Put("/{studentId}")
     fun updateTests(
         @PathVariable("studentId") studentId: Long,
-        @Body studentUser: StudentUser
+        @Body studentUser: UserUpdateDTO
     ): HttpResponse<String> {
-        userService.updateUser(studentId, studentUser.studentName, studentUser.studentDateOfBirth, studentUser.studentEmail)
+        userService.updateUser(studentId, studentUser)
 
         return HttpResponse.created("Student information was updated")
     }
 
     @Delete("/{userId}")
     fun deleteUser(@PathVariable("userId") userId: Long): HttpResponse<String> {
-        userService.deleteUser(userId)
-
-        return HttpResponse.ok("User of ID " + userId + "was deleted")
+        return userService.deleteUser(userId)
     }
 }

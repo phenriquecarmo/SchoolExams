@@ -1,19 +1,16 @@
-package com.schoolstudents.dtos
+package com.schoolexams.dtos
 
-import io.micronaut.core.annotation.Introspected
+import com.schoolexams.models.ExamLevel
 import io.micronaut.serde.annotation.Serdeable
-import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Serdeable
-@Introspected
-data class UserExams(
-    val examId: Long,
+data class ExamViewDTO(
+    val examId: Long?,
+    var examLevel: ExamLevel,
     var examTitle: String,
     var examDescription: String,
     var examDurationInMinutes: Long,
-    var examStatus: String,
-    var examCreator: String,
     var dateOfRegistering: LocalDateTime? = LocalDateTime.now(),
     var userOnExam: Long? = null
 ) {

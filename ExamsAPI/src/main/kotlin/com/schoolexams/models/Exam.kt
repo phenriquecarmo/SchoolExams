@@ -2,7 +2,6 @@ package com.schoolexams.models
 
 import io.micronaut.core.annotation.Introspected
 import io.micronaut.serde.annotation.Serdeable
-import jakarta.annotation.Nullable
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -13,7 +12,7 @@ import java.time.LocalDateTime
 data class Exam(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val examId: Long,
+    var examId: Long? = null,
     @Enumerated(value = EnumType.STRING) // Persisting ENUMs to DataBase
     var examLevel: ExamLevel,
     var examTitle: String,
