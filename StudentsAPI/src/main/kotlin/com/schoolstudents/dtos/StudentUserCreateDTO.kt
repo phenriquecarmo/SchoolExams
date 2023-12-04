@@ -1,0 +1,15 @@
+package com.schoolstudents.dtos
+
+import io.micronaut.serde.annotation.Serdeable
+import jakarta.validation.constraints.NotEmpty
+import jakarta.validation.constraints.Pattern
+
+@Serdeable
+data class StudentUserCreateDTO(
+    val studentId: Long,
+    @field:NotEmpty(message = "User Name is mandatory")
+    var studentName: String,
+    var studentDateOfBirth: String,
+    @Pattern(regexp = ".*@.*", message = "Email must contain '@'")
+    var studentEmail: String,
+)

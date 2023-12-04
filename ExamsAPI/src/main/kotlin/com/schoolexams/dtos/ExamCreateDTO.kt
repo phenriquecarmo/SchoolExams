@@ -15,7 +15,6 @@ data class ExamCreateDTO(
     var examTitle: String,
     @field:Size(min = 10, max = 300, message = "Description must have between 10 and 300 characters")
     var examDescription: String,
-    var examDurationInMinutes: Long,
     var examStatus: String,
     var examCreator: String
 

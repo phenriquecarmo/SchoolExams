@@ -3,8 +3,7 @@ package com.schoolstudents.dtos
 import io.micronaut.serde.annotation.Serdeable
 
 @Serdeable
-data class UserViewDTO(
-    val studentId: Long,
+data class StudentUserUpdateDTO(
     var studentName: String,
     var studentDateOfBirth: String,
     var studentEmail: String

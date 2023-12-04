@@ -1,12 +1,12 @@
 package com.schoolstudents.dtos
 
 import io.micronaut.serde.annotation.Serdeable
-import java.time.LocalDateTime
 
 @Serdeable
-data class UserCreateDTO(
+data class StudentUserViewDTO(
     val studentId: Long,
     var studentName: String,
     var studentDateOfBirth: String,
-    var studentEmail: String,
-)
+    var studentEmail: String
+) {
+}

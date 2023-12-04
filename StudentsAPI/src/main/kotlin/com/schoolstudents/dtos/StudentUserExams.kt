@@ -2,12 +2,11 @@ package com.schoolstudents.dtos
 
 import io.micronaut.core.annotation.Introspected
 import io.micronaut.serde.annotation.Serdeable
-import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Serdeable
 @Introspected
-data class UserExams(
+data class StudentUserExams(
     val examId: Long,
     var examTitle: String,
     var examDescription: String,

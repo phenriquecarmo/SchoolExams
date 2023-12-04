@@ -30,6 +30,7 @@ dependencies {
     implementation("jakarta.validation:jakarta.validation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+    testImplementation("com.h2database:h2")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     runtimeOnly("mysql:mysql-connector-java")

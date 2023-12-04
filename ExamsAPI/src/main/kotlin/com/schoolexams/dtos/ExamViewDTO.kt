@@ -10,7 +10,7 @@ data class ExamViewDTO(
     var examLevel: ExamLevel,
     var examTitle: String,
     var examDescription: String,
-    var examDurationInMinutes: Long,
+    var examDurationInMinutes: Long?,
     var dateOfRegistering: LocalDateTime? = LocalDateTime.now(),
     var userOnExam: Long? = null
 ) {

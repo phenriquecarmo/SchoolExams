@@ -1,6 +1,6 @@
 package com.schoolstudents.validation
 
-import com.schoolstudents.dtos.UserExams
+import com.schoolstudents.dtos.StudentUserExams
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.http.annotation.Get
@@ -10,6 +10,6 @@ import io.micronaut.http.annotation.PathVariable
 interface ExamsApiValidation {
 
     @Get("/examsOfUserId/{studentId}") // GET Request
-    fun getUserExams(@PathVariable("studentId") userId: Long): HttpResponse<List<UserExams?>?>
+    fun getUserExams(@PathVariable("studentId") userId: Long): HttpResponse<List<StudentUserExams?>?>
 
 }

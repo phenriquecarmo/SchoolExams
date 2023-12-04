@@ -17,11 +17,20 @@ data class Exam(
     var examLevel: ExamLevel,
     var examTitle: String,
     var examDescription: String,
-    var examDurationInMinutes: Long,
+    var examDurationInMinutes: Long? = null,
     var examStatus: String,
     var examCreator: String,
     var dateOfRegistering: LocalDateTime? = LocalDateTime.now(),
     var userOnExam: Long? = null
 ) {
 
+    // Set Exam Duration automatically based on the difficulty level
+    init {
+        examDurationInMinutes = when (examLevel) {
+            ExamLevel.BASIC -> 30
+            ExamLevel.INTERMEDIATE -> 60
+            ExamLevel.DIFFICULT -> 90
+        }
+
+    }
 }

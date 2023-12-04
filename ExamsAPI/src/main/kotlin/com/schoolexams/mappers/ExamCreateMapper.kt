@@ -12,7 +12,6 @@ class ExamCreateMapper: Mapper<ExamCreateDTO, Exam> {
             examLevel = t.examLevel,
             examTitle = t.examTitle,
             examDescription = t.examDescription,
-            examDurationInMinutes = t.examDurationInMinutes,
             examStatus = t.examStatus,
             examCreator = t.examCreator
         )
